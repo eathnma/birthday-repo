@@ -1,0 +1,27 @@
+/* #C5dee5 */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  cursor: default;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #c5dee5;
+}
+
+#color {
+  color: white;
+}
+
+.colourful {
+  color: red;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 100vh;
+}

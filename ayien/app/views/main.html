@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>AYIEN GENERATOR</title>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+</head>
+
+    <body>
+        <form>
+            <input type="text" placeholder="Type any sentence.">
+        </form>
+    </body>
+
+    <!-- can't run the minified version -->
+    <script src="https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dist/wordpos.min.js"></script>
+    <script>
+    let wordpos = window.wordpos = new WordPOS({
+      // preload: true,
+      // dictPath: 'https://unpkg.com/browse/wordpos-web@1.0.0/dict',
+      dictPath: 'https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dict',
+      profile: true,
+      debug: true,
+      // stopwords: false
+    });
+
+    // load all typed adjectives in an array
+    let adjective = [];
+
+    wordpos.getAdjectives('this is lately a likely tricky business this is')
+    .then(res => {
+      console.log(res); // ["lately", "likely"]
+    });
+
+    </script>
+  
+</html>
