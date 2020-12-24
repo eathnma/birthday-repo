@@ -7,31 +7,61 @@
 </head>
 
     <body>
-        <form>
-            <input type="text" placeholder="Type any sentence.">
-        </form>
+      <textarea placeholder="Ashley Text Generator..." id="area" name="area" cols="40" rows="6"></textarea>
     </body>
 
     <!-- can't run the minified version -->
     <script src="https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dist/wordpos.min.js"></script>
     <script>
     let wordpos = window.wordpos = new WordPOS({
-      // preload: true,
-      // dictPath: 'https://unpkg.com/browse/wordpos-web@1.0.0/dict',
+
       dictPath: 'https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dict',
       profile: true,
       debug: true,
       // stopwords: false
     });
 
-    // load all typed adjectives in an array
-    let adjective = [];
+    function randomizeCute(){
 
-    wordpos.getAdjectives('this is lately a likely tricky business this is')
-    .then(res => {
-      console.log(res); // ["lately", "likely"]
-    });
+      let cuteSynonyms = ['artful', 'adorable', 'dear', 'endearing', 'sweet', 'angelic', 
+      'cherubic', 'dainty', 'darling', 'innocent', 'loveable', 'precious', 'charming', 
+      'cuddly', 'delightful', 'loveable', 'lovely', 'cherubical', 'childlike', 'adorbs',
+      'kawaii', 'likeable', 'pretty-pretty'];
 
+       const randomValue = cuteSynonyms[Math.floor(Math.random() * cuteSynonyms.length)];
+       return randomValue;
+    }
+
+    window.addEventListener("keydown",
+    function(event){
+      if(event.key == " "){
+
+        var sentence = document.getElementById("area").value;
+
+        // grab determine the adjectives within the sentence
+        var getAdjective = wordpos.getAdjectives(`${sentence}`).then(res => {
+          
+          // check for undefined string or length of array
+          if(res === undefined || res.length == 0){
+            console.log('this is empty');
+            
+          } else {
+            console.log(res);
+            var ran = randomizeCute();
+            var res = sentence.replace('cute', `${ran}`);
+            document.getElementById("area").value = res;
+            
+            // ask tiffany how to extract data from promise
+            // const { foo, bar } = await 
+            // var def = wordpos.lookupAdjective(ran, console.log);
+            
+            // console.log(def);
+            
+          }
+        }
+    )};  
+  });
+  
     </script>
   
 </html>
